@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "840164516520",
+    "project_id": "qwe-mynotes",
+    "storage_bucket": "qwe-mynotes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840164516520:android:a733fdc0196dbd2639989d",
+        "android_client_info": {
+          "package_name": "com.example.learningdart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZIGgi2X6JOwvyD8pJsIdVcXJUS3RzFHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
