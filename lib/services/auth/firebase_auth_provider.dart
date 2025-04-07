@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:learningdart/firebase_options.dart';
 import 'package:learningdart/services/auth/auth_user.dart';
 import 'package:learningdart/services/auth/auth_provider.dart';
 import 'package:learningdart/services/auth/auth_exceptions.dart';
@@ -6,6 +8,13 @@ import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseAuthException;
 
 class FirebaseAuthProvider implements AuthProvider {
+  @override
+  Future<void> initialize() async {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
   @override
   Future<AuthUser> createUser({
     required String email,
@@ -48,7 +57,7 @@ class FirebaseAuthProvider implements AuthProvider {
   }
 
   @override
-  Future<AuthUser> LogIn({
+  Future<AuthUser> logIn({
     required String email,
     required String password,
   }) async {
@@ -68,18 +77,14 @@ class FirebaseAuthProvider implements AuthProvider {
         throw UserNotFoundAuthException();
       } else if (e.code == 'wrong-password') {
         throw WrongPasswordAuthException();
+      } else if (e.code == 'invalid-email') {
+        throw InvalidEmailAuthException();
       } else {
         throw GenericAuthException();
       }
     } catch (_) {
       throw GenericAuthException();
     }
-  }
-
-  @override
-  Future<void> initialize() {
-    // TODO: implement initialize
-    throw UnimplementedError();
   }
 
   @override
@@ -100,10 +105,5 @@ class FirebaseAuthProvider implements AuthProvider {
     } else {
       throw UserNotLoggedInAuthException();
     }
-  }
-
-  @override
-  Future<void> sendPasswordReset({required String toEmail}) {
-    throw UnimplementedError();
   }
 }
