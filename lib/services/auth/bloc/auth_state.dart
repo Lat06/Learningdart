@@ -4,46 +4,67 @@ import 'package:equatable/equatable.dart';
 
 @immutable
 abstract class AuthState {
-  const AuthState();
+  final bool isLoading;
+  final String? loadingText;
 
-  get exception => null;
+  const AuthState({
+    required this.isLoading,
+    this.loadingText = 'Please wait a moment',
+  });
+
+  Exception? get exception => null;
 }
 
 class AuthStateUninitialized extends AuthState {
-  const AuthStateUninitialized();
+  const AuthStateUninitialized({required super.isLoading});
 }
 
 class AuthStateLoading extends AuthState {
-  const AuthStateLoading();
+  const AuthStateLoading() : super(isLoading: true);
 }
 
 class AuthStateRegistering extends AuthState {
-  final Exception exception;
-  final bool isLoading;
+  @override
+  final Exception? exception;
 
   const AuthStateRegistering({
     required this.exception,
-    required this.isLoading,
+    required super.isLoading,
+  });
+}
+
+class AuthStateForgotPassword extends AuthState {
+  @override
+  final Exception? exception;
+  final bool hasSentEmail;
+  const AuthStateForgotPassword({
+    required this.exception,
+    required this.hasSentEmail,
+    required super.isLoading,
   });
 }
 
 class AuthStateLoggedIn extends AuthState {
   final AuthUser user;
-  const AuthStateLoggedIn(this.user);
+
+  const AuthStateLoggedIn({
+    required this.user,
+    required super.isLoading,
+  });
 }
 
 class AuthStateNeedsVerification extends AuthState {
-  final bool isLoading;
-
-  const AuthStateNeedsVerification({required this.isLoading});
+  const AuthStateNeedsVerification({required super.isLoading});
 }
 
 class AuthStateLoggedOut extends AuthState with EquatableMixin {
+  @override
   final Exception? exception;
-  final bool isLoading;
+
   const AuthStateLoggedOut({
     required this.exception,
-    required this.isLoading,
+    required super.isLoading,
+    super.loadingText = null,
   });
 
   @override
