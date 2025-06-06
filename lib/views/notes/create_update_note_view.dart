@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learningdart/extension/buildcontext/loc.dart';
 import 'package:learningdart/services/auth/auth_service.dart';
 import 'package:learningdart/utilities/dialogs/cannot_share_empty_dialog.dart';
 import 'package:learningdart/utilities/generic/get_arguments.dart';
@@ -92,12 +93,13 @@ class _NewNotesViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(context.loc.note),
         actions: [
           IconButton(
             onPressed: () async {
               final text = _textController.text;
               if (_note == null || text.isEmpty) {
-                await showCannotShareEmptyDialog(context);
+                await showCannotShareEmptyNoteDialog(context);
               } else {
                 SharePlus.instance.share(ShareParams(text: 'Share note'));
               }
@@ -105,7 +107,6 @@ class _NewNotesViewState extends State<CreateUpdateNoteView> {
             icon: const Icon(Icons.share),
           )
         ],
-        title: const Text('New note'),
       ),
       body: FutureBuilder(
         future: createOrGetExistingNote(context),
@@ -117,8 +118,8 @@ class _NewNotesViewState extends State<CreateUpdateNoteView> {
                 controller: _textController,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: 'Start typing your note..',
+                decoration: InputDecoration(
+                  hintText: context.loc.start_typing_your_note,
                 ),
               );
             default:

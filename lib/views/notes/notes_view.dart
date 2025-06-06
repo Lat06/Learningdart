@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learningdart/constants/routes.dart';
 import 'package:learningdart/enums/menu_actions.dart';
+import 'package:learningdart/extension/buildcontext/loc.dart';
 import 'package:learningdart/services/auth/auth_service.dart';
 import 'package:learningdart/services/auth/bloc/auth_bloc.dart';
 import 'package:learningdart/services/auth/bloc/auth_event.dart';
@@ -9,6 +10,10 @@ import 'package:learningdart/services/cloud/cloud_note.dart';
 import 'package:learningdart/services/cloud/firebase_cloud_storage.dart';
 import 'package:learningdart/utilities/dialogs/logout_dialog.dart';
 import 'package:learningdart/views/notes/notes_list_view.dart';
+
+extension Count<T extends Iterable> on Stream<T> {
+  Stream<int> get getLength => map((event) => event.length);
+}
 
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
@@ -31,7 +36,19 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Notes'),
+        title: StreamBuilder<int>(
+          stream: _noteService.allNotes(ownerUserId: userId).getLength,
+          builder: (context, AsyncSnapshot<int> snapshot) {
+            if (snapshot.hasData) {
+              final noteCount = snapshot.data ?? 0;
+              final text = context.loc.notes_title(noteCount);
+              return Text(text);
+            } else {
+              return const Text('');
+              // return Text(context.loc.notes);
+            }
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -45,6 +62,7 @@ class _NotesViewState extends State<NotesView> {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
+                    // ignore: use_build_context_synchronously
                     context.read<AuthBloc>().add(
                           const AuthEventLogOut(),
                         );
@@ -52,10 +70,10 @@ class _NotesViewState extends State<NotesView> {
               }
             },
             itemBuilder: (context) {
-              return const [
+              return [
                 PopupMenuItem(
                   value: MenuAction.logout,
-                  child: Text('Log out'),
+                  child: Text(context.loc.logout_button),
                 ),
               ];
             },

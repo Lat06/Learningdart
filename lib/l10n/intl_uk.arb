@@ -1,0 +1,61 @@
+{
+  "logout_button": "Вийти",
+  "note": "Нотатка",
+  "notes": "Нотатки",
+  "cancel": "Скасувати",
+  "yes": "Так",
+  "delete": "Видалити",
+  "sharing": "Спільний доступ",
+  "ok": "ОК",
+  "login": "Увійти",
+  "verify_email": "Підтвердіть електронну пошту",
+  "register": "Зареєструватися",
+  "restart": "Перезапустити",
+
+  "start_typing_your_note": "Почніть вводити свою нотатку",
+  "delete_note_prompt": "Ви впевнені, що хочете видалити цю нотатку?",
+  "cannot_share_empty_note_prompt": "Неможливо поділитися порожньою нотаткою!",
+  "generic_error_prompt": "Сталася помилка",
+  "logout_dialog_prompt": "Ви впевнені, що хочете вийти з облікового запису?",
+
+  "password_reset": "Скидання пароля",
+  "password_reset_dialog_prompt": "Ми надіслали вам посилання для скидання пароля. Перевірте електронну пошту для отримання додаткової інформації.",
+
+  "login_error_cannot_find_user": "Не вдалося знайти користувача з такими обліковими даними!",
+  "login_error_wrong_credentials": "Невірні облікові дані",
+  "login_error_auth_error": "Помилка автентифікації",
+
+  "login_view_prompt": "Увійдіть до свого облікового запису, щоб створювати та переглядати нотатки!",
+
+  "login_view_forgot_password": "Я забув пароль",
+  "login_view_not_registered_yet": "Ще не зареєстровані? Зареєструйтеся тут!",
+
+  "email_text_field_placeholder": "Введіть свою електронну пошту",
+  "password_text_field_placeholder": "Введіть свій пароль",
+
+  "forgot_password": "Забули пароль",
+  "forgot_password_view_generic_error": "Не вдалося обробити ваш запит. Переконайтеся, що ви зареєстровані, або зареєструйтесь зараз, повернувшись на попередній крок.",
+  "forgot_password_view_prompt": "Якщо ви забули пароль, просто введіть свою електронну пошту, і ми надішлемо посилання для скидання.",
+  "forgot_password_view_send_me_link": "Надіслати посилання для скидання пароля",
+  "forgot_password_view_back_to_login": "Повернутися на сторінку входу",
+
+  "register_error_weak_password": "Цей пароль недостатньо безпечний. Оберіть інший!",
+  "register_error_email_already_in_use": "Ця електронна пошта вже використовується іншим користувачем. Оберіть іншу!",
+  "register_error_generic": "Не вдалося зареєструватися. Спробуйте пізніше!",
+  "register_error_invalid_email": "Введена електронна адреса недійсна. Спробуйте іншу!",
+  "register_view_prompt": "Введіть свою електронну пошту та пароль, щоб переглядати нотатки!",
+  "register_view_already_registered": "Вже зареєстровані? Увійдіть тут!",
+
+  "verify_email_view_prompt": "Ми надіслали вам лист для підтвердження. Відкрийте його, щоб підтвердити акаунт. Якщо ви не отримали лист, натисніть кнопку нижче!",
+  "verify_email_send_email_verification": "Надіслати підтвердження електронної пошти",
+
+  "notes_title": "{count, plural, =0{Ще немає нотаток} =1{1 нотатка} other{{count} нотаток}}",
+  "@notes_title": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3 нотатки"
+      }
+    }
+  }
+}
