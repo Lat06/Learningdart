@@ -5,4 +5,5 @@ output-class: AppLocalizations
 preferred-supported-locales:
   - en
   - uk
-# synthetic-package: false
+synthetic-package: false
+output-dir: lib/generated

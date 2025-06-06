@@ -12,7 +12,7 @@ import 'package:learningdart/views/notes/create_update_note_view.dart';
 import 'package:learningdart/views/notes/notes_view.dart';
 import 'package:learningdart/views/register_view.dart';
 import 'package:learningdart/views/verify_email_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:learningdart/generated/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
